@@ -3,14 +3,31 @@ let expenses= [
 
 ]
 
+const titleInput = document.getElementById("title")
+const amountInput = document.getElementById("amount")
+const addBtn = document.getElementById("addBtn")
+const expenseList = document.getElementById("expenseList")
+
+addBtn.addEventListener("click", () => {
+    const title = titleInput.value 
+    const amount = Number(amountInput.value)
+
+    const result = addExpense(title,amount)
+
+    if(result==="invalid amount"){
+        alert("invalid input")
+    }
+    
+    renderExpenses()
+})
+
 // Function to add an expense
 function addExpense(title,amount){
     if(typeof amount!== "number" || amount<=0 || isNaN(amount)){
         return "Invalid amount"
     } 
-    else{
-        expenses.push({title, amount})
-    }
+    expenses.push({title, amount})
+    
         
 }
 
