@@ -17,9 +17,19 @@ addBtn.addEventListener("click", () => {
     if(result==="invalid amount"){
         alert("invalid input")
     }
-    
+
     renderExpenses()
 })
+    
+function renderExpenses() {
+    expenseList.innerHTML = ""
+
+    expenses.forEach(exp => {
+        const li = document.createElement("li")
+        li.textContent = `${exp.title} - ₹${exp.amount}`
+        expenseList.appendChild(li)
+    })
+}
 
 // Function to add an expense
 function addExpense(title,amount){
@@ -30,6 +40,8 @@ function addExpense(title,amount){
     
         
 }
+
+
 
 // Function to get total expenses
 function getTotal(){
@@ -71,6 +83,3 @@ console.log(filterByTitle("food"))
 console.log(getTotalByTitle("food"))
 console.log(getTitles())
 deleteExpense("Travel")
-
-
-
