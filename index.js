@@ -14,11 +14,14 @@ addBtn.addEventListener("click", () => {
 
     const result = addExpense(title,amount)
 
-    if(result==="invalid amount"){
+    if(result==="Invalid amount"){
         alert("invalid input")
+        return
     }
 
-    renderExpenses()
+    render()
+    titleInput.value= ""
+    amountInput.value=""
 })
     
 function renderExpenses() {
@@ -41,13 +44,21 @@ function addExpense(title,amount){
         
 }
 
-
-
+const totalExpenses= document.getElementById("totalExpenses")
 // Function to get total expenses
 function getTotal(){
     return expenses.reduce((sum, item) => sum+item.amount, 0)
 }
 
+function renderTotal(){
+    
+    totalExpenses.textContent=`Total: ${getTotal()}`
+}
+
+function render() {
+    renderExpenses()
+    renderTotal()
+}
 // Function to filter expenses by title
 
 function filterByTitle(title){
@@ -66,16 +77,16 @@ function getTitles(){
     return expenses.map(t=>t.title)
 }
 
+const dltBtn = document.getElementById("dltBtn")
 //  Function to delete an expense by title
 function deleteExpense(title){
     expenses= expenses.filter(item => item.title.toLowerCase()!==title.toLowerCase())
     console.log("Expense Deleted")
 }
+dltBtn.addEventListener("click", () => {
+    
+})
 
-addExpense("food", 200)
-addExpense("Travel", 600)
-addExpense("food", "abc")
-addExpense("food", 400)
 
 console.log(expenses)
 console.log(getTotal())
