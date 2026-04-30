@@ -85,7 +85,7 @@ function getTotalByTitle(title){
     .reduce((sum, item) => sum+item.amount, 0)
 }
 
-searchBtn.addEventListener("click", () => {
+searchInput.addEventListener("input", () => {
     const title= searchInput.value
     const filtered = filterByTitle(title)
     renderfilter(filtered)
